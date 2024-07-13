@@ -1,28 +1,14 @@
 steps:
   # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/genai-test-427612/my-repo:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/genai-test-427612/my-python-app:$COMMIT_SHA', '-f', 'Dockerfile', '.']
   
   # Push the Docker image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/genai-test-427612/my-repo:$COMMIT_SHA']
+    args: ['push', 'gcr.io/genai-test-427612/my-python-app:$COMMIT_SHA']
   
-  # Deploy to Cloud Run
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-      - 'run'
-      - 'deploy'
-      - 'my-service'
-      - '--image'
-      - 'gcr.io/genai-test-427612/my-repo:$COMMIT_SHA'
-      - '--platform'
-      - 'managed'
-      - '--region'
-      - 'us-central1'
-      - '--allow-unauthenticated'
-
 images:
-  - 'gcr.io/genai-test-427612/my-repo:$COMMIT_SHA'
+  - 'gcr.io/genai-test-427612/my-python-app:$COMMIT_SHA'
 
 options:
   logging: NONE  # Disable build logging
