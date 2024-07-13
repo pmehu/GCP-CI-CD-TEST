@@ -1,12 +1,20 @@
 steps:
   # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/genai-test-427612/my-python-app:$COMMIT_SHA', '-f', 'Dockerfile', '.']
-  
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/genai-test-427612/my-python-app:$COMMIT_SHA'
+      - '-f'
+      - 'Dockerfile'
+      - '.'
+
   # Push the Docker image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/genai-test-427612/my-python-app:$COMMIT_SHA']
-  
+    args:
+      - 'push'
+      - 'gcr.io/genai-test-427612/my-python-app:$COMMIT_SHA'
+
 images:
   - 'gcr.io/genai-test-427612/my-python-app:$COMMIT_SHA'
 
