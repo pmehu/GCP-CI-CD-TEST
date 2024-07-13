@@ -4,7 +4,7 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'gcr.io/genai-test-427612/my-python-app:$COMMIT_SHA'
+      - 'gcr.io/$PROJECT_ID/my-node-app:$COMMIT_SHA'
       - '-f'
       - 'Dockerfile'
       - '.'
@@ -13,10 +13,10 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'gcr.io/genai-test-427612/my-python-app:$COMMIT_SHA'
+      - 'gcr.io/$PROJECT_ID/my-node-app:$COMMIT_SHA'
 
 images:
-  - 'gcr.io/genai-test-427612/my-python-app:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/my-node-app:$COMMIT_SHA'
 
 options:
   logging: NONE  # Disable build logging
